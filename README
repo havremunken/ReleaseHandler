@@ -1,0 +1,36 @@
+Release Handler Library & friends
+=================================
+
+Please note that this is not meant to be a general purpose library. This is created for my specific needs.
+
+When I do development, I try to streamline the versioning and release process as much as possible. Primarily because it is a pain
+to do manually, but also to make sure I don't forget a step and need to start all over to give my users a proper release.
+
+With github and continuous integration and agile and all that stuff, there is a lot to keep in mind. With my various projects
+I try to stick to the workflow and tools described here. 
+
+- REPOSITORY STRUCTURE
+
+I use git and github, and basically use branches to control release management. The following branches always exist in each repo:
+
+  master      - The original branch as created by git
+  public      - Not a public repository, but a branch that tracks public releases of the software
+  beta        - The latest beta version should always be in this branch
+  alpha       - Same idea as above
+  development - Stuff I am currently working on
+
+Since I do development on several computers, this makes it easy to keep up to date everywhere. I also have the following branches
+that usually never leave the development computer they were created on:
+  
+  dev/feature - Topic branches that are created for each feature spike
+  bug/xxx     - Bug fix branches
+  
+- CONTINUOUS INTEGRATION
+
+I use Hudson to do building, testing and releasing. In addition to getting updated stuff from github, it needs to know exactly
+how to handle everything. That is where the tools in this project come in handy.
+
+The following utilities are part of this repository:
+
+  GetFileVersion  - Extract the file version from a file and write it to a file useable by the NSIS installer.
+  VersionBumper   - Tracks version bumps in a certain way.

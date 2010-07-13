@@ -121,5 +121,61 @@ namespace ReleaseHandlerLibrary.Tests
         }
 
         #endregion
+
+        #region Bump tests
+        
+        [Test]
+        public void Bump_WhenBumpingSingleVersion_BumpsAsExpected()
+        {
+            // Arrange
+            var vf = new VersionFile();
+            vf.AddVersion("Test", new Version("v1.0.0.0"), VersionField.Build);
+
+            // Act
+            vf.Bump("Test");
+
+            // Assert
+            Assert.That(vf.Versions.First().Version.Build, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Bump_WhenBumpingReleaseBundleAboveSomeOthers_OthersAreResetAlongWithIt()
+        {
+            // Arrange
+            var vf = new VersionFile();
+            vf.AddVersion("Master", new Version("v1.0.0.0"), VersionField.Major);
+            vf.AddVersion("Public", new Version("v1.4.0.0"), VersionField.Minor);
+            vf.AddVersion("Beta", new Version("v1.4.12.0"), VersionField.Feature);
+            vf.AddVersion("Alpha", new Version("v1.4.12.28"), VersionField.Build);
+
+            // Act
+            var res = vf.Bump("Master");
+
+            // Assert
+            Assert.That(res, Is.True);
+            Assert.That(vf.Versions.Single(v => v.Name == "Master").Version.ToString(), Is.EqualTo("v2"), "Master not bumped");
+            Assert.That(vf.Versions.Single(v => v.Name == "Public").Version.ToString(), Is.EqualTo("v2"), "Public not bumped");
+            Assert.That(vf.Versions.Single(v => v.Name == "Beta").Version.ToString(), Is.EqualTo("v2"), "Beta not bumped");
+            Assert.That(vf.Versions.Single(v => v.Name == "Alpha").Version.ToString(), Is.EqualTo("v2"), "Alpha not bumped");
+        }
+        
+        [Test]
+        public void Bump_WhenBundleNotfound_ReturnsFalse()
+        {
+            // Arrange
+            var vf = new VersionFile();
+            vf.AddVersion("Master", new Version("v1.0.0.0"), VersionField.Major);
+            vf.AddVersion("Public", new Version("v1.4.0.0"), VersionField.Minor);
+            vf.AddVersion("Beta", new Version("v1.4.12.0"), VersionField.Feature);
+            vf.AddVersion("Alpha", new Version("v1.4.12.28"), VersionField.Build);
+
+            // Act
+            var res = vf.Bump("Frogger");
+
+            // Assert
+            Assert.That(res, Is.False);
+        }
+
+        #endregion
     }
 }

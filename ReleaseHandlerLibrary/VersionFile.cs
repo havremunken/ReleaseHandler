@@ -42,6 +42,27 @@ namespace ReleaseHandlerLibrary
             _versions.Add(new ReleaseBundle { Name = name, Version = version, Field = fieldToBump });
         }
 
+        public bool Bump(string releaseName)
+        {
+            var bundle = _versions.SingleOrDefault(t => String.Compare(t.Name, releaseName, true) == 0);
+            if (bundle == null)
+                return false;
+
+            bundle.Version.Bump(bundle.Field);
+
+            // Sett alle som er "under" denne på rangstigen til samme versjon
+            var toUpgrade = from t in _versions
+                            where t.Field > bundle.Field
+                            select t;
+
+            foreach (var t in toUpgrade)
+            {
+                t.Version = bundle.Version;
+            }
+
+            return true;
+        }
+
         public void Save(string filename)
         {
             var file = new StreamWriter(filename);

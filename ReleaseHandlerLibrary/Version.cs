@@ -75,6 +75,16 @@ namespace ReleaseHandlerLibrary
             }
         }
 
+        public string ToFullString()
+        {
+            return "v" + Major + "." + Minor + "." + Feature + "." + Build;
+        }
+
+        public string ToFullStringNoV()
+        {
+            return Major + "." + Minor + "." + Feature + "." + Build;
+        }
+
         public override string ToString()
         {
             if(Build!=0)

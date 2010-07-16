@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AssemblyInfo.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="AssemblyInfoHandler_Tests.cs" />
+    <Compile Include="FileFinder_Tests.cs" />
     <Compile Include="ReleaseBundle_Tests.cs" />
     <Compile Include="VersionFile_Tests.cs" />
     <Compile Include="Version_Tests.cs" />

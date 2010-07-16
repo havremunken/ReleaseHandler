@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfoHandler.cs" />
     <Compile Include="FileFinder.cs" />
     <Compile Include="ReleaseBundle.cs" />
     <Compile Include="Version.cs" />

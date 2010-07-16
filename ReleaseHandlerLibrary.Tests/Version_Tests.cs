@@ -189,7 +189,7 @@ namespace ReleaseHandlerLibrary.Tests
 
         #endregion
 
-        #region ToString tests
+        #region ToString (and brothers) tests
 
         [Test]
         public void ToString_WithFullVersionNumber_ReturnsExpectedResult()
@@ -259,6 +259,32 @@ namespace ReleaseHandlerLibrary.Tests
 
             // Assert
             Assert.That(res, Is.EqualTo("v0.1.1.5"));
+        }
+
+        [Test]
+        public void ToFullString_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var ver = new Version("v1.2.0.0");
+
+            // Act
+            var res = ver.ToFullString();
+
+            // Assert
+            Assert.That(res, Is.EqualTo("v1.2.0.0"));
+        }
+
+        [Test]
+        public void ToFullStringNoV_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var ver = new Version("v1.2.0.0");
+
+            // Act
+            var res = ver.ToFullStringNoV();
+
+            // Assert
+            Assert.That(res, Is.EqualTo("1.2.0.0"));
         }
 
         #endregion

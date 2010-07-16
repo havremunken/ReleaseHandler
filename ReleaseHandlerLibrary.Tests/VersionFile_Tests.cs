@@ -67,8 +67,42 @@ namespace ReleaseHandlerLibrary.Tests
 
         #endregion
 
+        #region GetVersionByName tests
+
+        [Test]
+        public void GetVersionByName_WhenThereIsSuchAVersion_ReturnsExpectedResult()
+        {
+            // Arrange
+            var ver = new Version("v1.2.3.4");
+            var vf = new VersionFile();
+            vf.AddVersion("Alpha", ver, VersionField.Build);
+
+            // Act
+            var res = vf.GetVersionByName("Alpha");
+
+            // Assert
+            Assert.That(res, Is.EqualTo(ver));
+        }
+
+        [Test]
+        public void GetVersionByName_WhenThereIsntSuchAVersion_ReturnsNull()
+        {
+            // Arrange
+            var ver = new Version("v1.2.3.4");
+            var vf = new VersionFile();
+            vf.AddVersion("Alpha", ver, VersionField.Build);
+
+            // Act
+            var res = vf.GetVersionByName("Beta");
+
+            // Assert
+            Assert.That(res, Is.Null);
+        }
+
+        #endregion
+
         #region Load and save tests
-        
+
         [Test]
         public void Save_WhenSaving_PutsSomethingOnDisk()
         {

@@ -63,6 +63,12 @@ namespace ReleaseHandlerLibrary
             return true;
         }
 
+        public Version GetVersionByName(string versionName)
+        {
+            var bundle = _versions.SingleOrDefault(v => string.Compare(v.Name, versionName, true) == 0);
+            return bundle == null ? null : bundle.Version;
+        }
+
         public void Save(string filename)
         {
             var file = new StreamWriter(filename);

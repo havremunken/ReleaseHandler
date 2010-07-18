@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Set variables
+
+RELEASE=$1
+
+##### CHECK PART #####
+
+# Check if Version.ini exists
+
+if [ ! -e Version.ini ] ; then
+  echo "Version.ini does not exist - initialize it somehow!"
+  exit 1
+fi
+
+# Check that we have the release argument
+
+if [ -z $1 ]; then
+  echo "Usage: $0 <releasename>"
+  echo "Where <releasename> is one of those found in Version.ini"
+  exit 1
+fi
+
+# Check that the named release is good
+
+VERSIONISGOOD=`bin/CheckReleaseName.exe ${RELEASE}`
+if [ $VERSIONISGOOD == 'Unknown' ] ; then
+  echo "Release name '$RELEASE' is not recognized"
+  exit 1
+fi
+
+# Check if working directory is clean
+
+WKDIRCLEAN=`git status | grep "working directory clean" | wc -l`
+if [ $WKDIRCLEAN -eq 0 ] ; then
+  echo Working directory is not clean! Please take care of that and try again!
+  git status
+  exit 1
+fi
+
+##### END CHECK PART #####
+
+##### DO STUFF PART #####
+
+git checkout $RELEASE
+
+bin/VersionBumper.exe $RELEASE
+echo "Releasing new $RELEASE version!"
+
+NEWVERSION=`bin/GetReleaseVersion.exe ${RELEASE}`
+echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
+
+git shortlog development >>CurrentRelease.txt
+
+echo " " >>CurrentRelease.txt
+echo "=======================================================================" >>CurrentRelease.txt
+echo " " >>CurrentRelease.txt
+
+$EDITOR CurrentRelease.txt
+
+if [ -e TempRelNotes.txt ] ; then
+  rm TempRelNotes.txt
+fi
+
+cp CurrentRelease.txt TempRelNotes.txt
+cat ReleaseNotes.txt >>TempRelNotes.txt
+rm ReleaseNotes.txt
+mv TempRelNotes.txt ReleaseNotes.txt
+rm CurrentRelease.txt
+
+# This should just update Version.ini and ReleaseNotes.txt, at least on purpose. :)
+
+git add --update
+git push origin ${RELEASE}
+git checkout development
+git merge ${RELEASE}
+
+##### END DO STUFF PART #####

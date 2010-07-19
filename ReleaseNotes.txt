@@ -1,0 +1,12 @@
+alpha release v0.0.0.1
+
+- Initial commit
+- Complete VersionBumper first version
+- Add AssemblyInfoUpdater project and make it work
+- Polish AssemblyInfoUpdater and classes, do full code coverage in tests
+- Add project CheckReleaseName that checks if we know about a given release name
+- Add GetReleaseVersion project
+- Add first version of release script
+ 
+=======================================================================
+ 

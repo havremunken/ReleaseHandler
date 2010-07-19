@@ -23,7 +23,7 @@ fi
 
 # Check that the named release is good
 
-VERSIONISGOOD=`bin/CheckReleaseName.exe ${RELEASE}`
+VERSIONISGOOD=`CheckReleaseName.exe ${RELEASE}`
 if [ $VERSIONISGOOD == 'Unknown' ] ; then
   echo "Release name '$RELEASE' is not recognized"
   exit 1
@@ -46,9 +46,9 @@ git checkout $RELEASE
 
 git merge development
 
-bin/VersionBumper.exe $RELEASE
+VersionBumper.exe $RELEASE
 
-NEWVERSION=`bin/GetReleaseVersion.exe ${RELEASE}`
+NEWVERSION=`GetReleaseVersion.exe ${RELEASE}`
 echo "Releasing new $RELEASE version ${NEWVERSION}!"
 
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
@@ -72,7 +72,7 @@ mv TempRelNotes.txt ReleaseNotes.txt
 rm CurrentRelease.txt
 
 # Update all AssemblyInfo.cs files
-bin/AssemblyInfoUpdater.exe ${RELEASE}
+AssemblyInfoUpdater.exe ${RELEASE}
 
 git add --update
 git commit -m"Releasing ${RELEASE} ${NEWVERSION}"

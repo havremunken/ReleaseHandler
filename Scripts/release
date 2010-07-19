@@ -44,20 +44,17 @@ fi
 
 git checkout $RELEASE
 
-git merge development
-
-VersionBumper.exe $RELEASE
-
 NEWVERSION=`GetReleaseVersion.exe ${RELEASE}`
 echo "Releasing new $RELEASE version ${NEWVERSION}!"
-
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
-
 git shortlog ${RELEASE}..development >>CurrentRelease.txt
-
 echo " " >>CurrentRelease.txt
 echo "=======================================================================" >>CurrentRelease.txt
 echo " " >>CurrentRelease.txt
+
+git merge development
+
+VersionBumper.exe $RELEASE
 
 $EDITOR CurrentRelease.txt
 

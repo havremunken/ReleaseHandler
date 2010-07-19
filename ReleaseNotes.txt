@@ -1,4 +1,16 @@
 alpha release v0.0.0.3
+
+Rune Jacobsen (6):
+      Fix release notes generation so that only changes since last release are recorded
+      Release script tags each commit with release type and version
+      Remove bin directory - running the files from the package directory just creates trouble
+      Make release script push tags along with release commit
+      Remove bin/ reference from release script
+      Fix a problem with script order messing up for git shortlog
+ 
+=======================================================================
+ 
+alpha release v0.0.0.3
       Add contact information to README file
  
 =======================================================================

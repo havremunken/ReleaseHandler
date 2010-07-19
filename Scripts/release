@@ -2,7 +2,7 @@
 
 # Set variables
 
-RELEASE=$1
+RELEASE=`echo $1 | tr "A-Z" "a-z"`
 
 ##### CHECK PART #####
 

@@ -15,10 +15,14 @@ fi
 
 # Check that we have the release argument
 
-if [ -z $1 ]; then
+if [ -z $1 ] ; then
   echo "Usage: $0 <releasename>"
   echo "Where <releasename> is one of those found in Version.ini"
   exit 1
+fi
+
+if [ -z $EDITOR ] ; then
+  EDITOR=`which vim`
 fi
 
 # Check that the named release is good
@@ -49,8 +53,8 @@ VersionBumper.exe $RELEASE
 NEWVERSION=`GetReleaseVersion.exe ${RELEASE}`
 echo "Releasing new $RELEASE version ${NEWVERSION}!"
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
-git shortlog ${RELEASE}..development >>CurrentRelease.txt
 echo " " >>CurrentRelease.txt
+git shortlog ${RELEASE}..development >>CurrentRelease.txt
 echo "=======================================================================" >>CurrentRelease.txt
 echo " " >>CurrentRelease.txt
 

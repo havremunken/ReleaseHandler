@@ -45,9 +45,10 @@ fi
 git checkout $RELEASE
 
 bin/VersionBumper.exe $RELEASE
-echo "Releasing new $RELEASE version!"
 
 NEWVERSION=`bin/GetReleaseVersion.exe ${RELEASE}`
+echo "Releasing new $RELEASE version ${NEWVERSION}!"
+
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
 
 git shortlog development >>CurrentRelease.txt

@@ -1,3 +1,10 @@
+alpha release v0.0.0.8
+ 
+Rune Jacobsen (1):
+      Make release script make release names all lowercase
+
+=======================================================================
+ 
 alpha release v0.0.0.7
 Rune Jacobsen (2):
       Add another small thing to ReleaseNotes.txt

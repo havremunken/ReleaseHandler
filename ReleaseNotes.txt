@@ -1,3 +1,24 @@
+Alpha release v0.0.0.3
+Rune Jacobsen (16):
+      Initial commit
+      Complete VersionBumper first version
+      Add AssemblyInfoUpdater project and make it work
+      Polish AssemblyInfoUpdater and classes, do full code coverage in tests
+      Add project CheckReleaseName that checks if we know about a given release name
+      Add GetReleaseVersion project
+      Add first version of release script
+      Prver ny clean release
+      Slightly updated release script
+      Create basics for new repository
+      Update README file to be somewhat current
+      Fix nunit reference in unit testing project
+      Added binaries to project
+      Added some information to the README file
+      Releasing alpha v0.0.0.1
+      Add some missing steps to release script
+
+==============================================================
+ 
 Alpha release v0.0.0.1
 Rune Jacobsen (14):
       Initial commit

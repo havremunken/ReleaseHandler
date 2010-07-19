@@ -78,6 +78,7 @@ bin/AssemblyInfoUpdater.exe ${RELEASE}
 
 git add --update
 git commit -m"Releasing ${RELEASE} ${NEWVERSION}"
+git tag -a ${RELEASE}-${NEWVERSION} -m"${RELEASE} release ${NEWVERSION}"
 git push origin ${RELEASE}
 git checkout development
 git merge ${RELEASE}

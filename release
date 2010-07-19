@@ -44,6 +44,8 @@ fi
 
 git checkout $RELEASE
 
+git merge development
+
 bin/VersionBumper.exe $RELEASE
 
 NEWVERSION=`bin/GetReleaseVersion.exe ${RELEASE}`
@@ -75,6 +77,7 @@ bin/AssemblyInfoUpdater.exe ${RELEASE}
 # This should just update Version.ini and ReleaseNotes.txt, at least on purpose. :)
 
 git add --update
+git commit -m"Releasing ${RELEASE} ${NEWVERSION}"
 git push origin ${RELEASE}
 git checkout development
 git merge ${RELEASE}

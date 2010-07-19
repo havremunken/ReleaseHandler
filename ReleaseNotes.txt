@@ -1,3 +1,10 @@
+alpha release v0.0.0.7
+Rune Jacobsen (2):
+      Add another small thing to ReleaseNotes.txt
+      Fix a few bugs in release script, fallback for editor mechanism
+ 
+=======================================================================
+ 
 Another small change just to verify that the release script is working in a halfway decent way.
 
 =======================================================================

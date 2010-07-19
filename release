@@ -69,6 +69,9 @@ rm ReleaseNotes.txt
 mv TempRelNotes.txt ReleaseNotes.txt
 rm CurrentRelease.txt
 
+# Update all AssemblyInfo.cs files
+bin/AssemblyInfoUpdater.exe ${RELEASE}
+
 # This should just update Version.ini and ReleaseNotes.txt, at least on purpose. :)
 
 git add --update

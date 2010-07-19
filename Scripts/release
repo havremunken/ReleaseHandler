@@ -74,12 +74,10 @@ rm CurrentRelease.txt
 # Update all AssemblyInfo.cs files
 bin/AssemblyInfoUpdater.exe ${RELEASE}
 
-# This should just update Version.ini and ReleaseNotes.txt, at least on purpose. :)
-
 git add --update
 git commit -m"Releasing ${RELEASE} ${NEWVERSION}"
 git tag -a ${RELEASE}-${NEWVERSION} -m"${RELEASE} release ${NEWVERSION}"
-git push origin ${RELEASE}
+git push origin ${RELEASE} --tags
 git checkout development
 git merge ${RELEASE}
 

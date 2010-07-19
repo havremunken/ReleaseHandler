@@ -77,5 +77,6 @@ git tag -a ${RELEASE}-${NEWVERSION} -m"${RELEASE} release ${NEWVERSION}"
 git push origin ${RELEASE} --tags
 git checkout development
 git merge ${RELEASE}
+git push origin development
 
 ##### END DO STUFF PART #####

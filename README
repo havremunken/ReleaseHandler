@@ -13,8 +13,8 @@ I try to stick to the workflow and tools described here.
 
 I use git and github, and basically use branches to control release management. The following branches always exist in each repo:
 
-  master      - The original branch as created by git
-  public      - Not a public repository, but a branch that tracks public releases of the software
+  version     - Not a public repository, but a branch that tracks public releases of the software
+  subversion  - Public minor releases
   beta        - The latest beta version should always be in this branch
   alpha       - Same idea as above
   development - Stuff I am currently working on
@@ -32,5 +32,13 @@ how to handle everything. That is where the tools in this project come in handy.
 
 The following utilities are part of this repository:
 
-  GetFileVersion  - Extract the file version from a file and write it to a file useable by the NSIS installer.
-  VersionBumper   - Tracks version bumps in a certain way.
+  GetFileVersion      - Extract the file version from a file and write it to a file useable by the NSIS installer.
+  VersionBumper       - Tracks version bumps in a certain way.
+  AssemblyInfoUpdater - Updates AssemblyInfo.cs files with new version information.
+  CheckReleaseName    - Checks if the argument appears in the Version.ini file as a valid release name.
+  GetReleaseVersion   - Returns the version information as a string based on the given argument.
+  
+The following script is also included:
+
+  release             - The script that does all the heavy lifting.
+

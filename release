@@ -53,7 +53,7 @@ echo "Releasing new $RELEASE version ${NEWVERSION}!"
 
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
 
-git shortlog development >>CurrentRelease.txt
+git shortlog ${RELEASE}..development >>CurrentRelease.txt
 
 echo " " >>CurrentRelease.txt
 echo "=======================================================================" >>CurrentRelease.txt

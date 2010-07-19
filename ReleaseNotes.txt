@@ -1,3 +1,10 @@
+alpha release v0.0.0.6
+Rune Jacobsen (1):
+      Add message about case mixing in git branch names to ReleaseNotes.txt
+
+ 
+=======================================================================
+ 
 Note - there is a bug, git does not like it when you mix case of branch names. So don't!
 
 =======================================================================

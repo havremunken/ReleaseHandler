@@ -44,6 +44,8 @@ fi
 
 git checkout $RELEASE
 
+VersionBumper.exe $RELEASE
+
 NEWVERSION=`GetReleaseVersion.exe ${RELEASE}`
 echo "Releasing new $RELEASE version ${NEWVERSION}!"
 echo "${RELEASE} release ${NEWVERSION}" >CurrentRelease.txt
@@ -53,8 +55,6 @@ echo "=======================================================================" >
 echo " " >>CurrentRelease.txt
 
 git merge development
-
-VersionBumper.exe $RELEASE
 
 $EDITOR CurrentRelease.txt
 

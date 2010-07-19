@@ -1,3 +1,11 @@
+Alpha release v0.0.0.5
+Rune Jacobsen (2):
+      Make script push development to origin/development at the end as well
+      Fixed a bug in the script regarding the ordering of certain commands and putting the wrong version in release notes
+
+ 
+=======================================================================
+ 
 alpha release v0.0.0.3
 
 Rune Jacobsen (6):

@@ -1,7 +1,10 @@
+Another small change just to verify that the release script is working in a halfway decent way.
+
+=======================================================================
+
 alpha release v0.0.0.6
 Rune Jacobsen (1):
       Add message about case mixing in git branch names to ReleaseNotes.txt
-
  
 =======================================================================
  
